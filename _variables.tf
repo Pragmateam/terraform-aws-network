@@ -1,7 +1,3 @@
-terraform {
-  experiments = [module_variable_optional_attrs]
-}
-
 variable "max_az" {
   default     = 3
   description = "Max number of AZs"
