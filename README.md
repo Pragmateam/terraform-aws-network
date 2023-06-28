@@ -69,7 +69,7 @@ module "network" {
 | kubernetes\_clusters\_type | Use either 'owned' or 'shared' for kubernetes cluster tags | `string` | `"shared"` | no |
 | max\_az | Max number of AZs | `number` | `3` | no |
 | multi\_nat | Number of NAT Instances, 'true' will yield one per AZ while 'false' creates one NAT | `bool` | `false` | no |
-| name | Name prefix for the resources of this stack | `any` | n/a | yes |
+| name | Name prefix for the resources of this stack | `string` | n/a | yes |
 | name\_pattern | Name pattern to use for resources. Options: default, kebab | `string` | `"default"` | no |
 | name\_suffix | Adds a name suffix to all resources created | `string` | `""` | no |
 | nat | Deploy NAT instance(s) | `bool` | `true` | no |
@@ -88,18 +88,9 @@ module "network" {
 | transit\_nacl\_inbound\_udp\_ports | UDP Ports to allow inbound on transit subnet via NACLs (this list cannot be empty) | `list(string)` | <pre>[<br>  "1194"<br>]</pre> | no |
 | transit\_netnum\_offset | Start with this subnet for secure ones, plus number of AZs | `number` | `15` | no |
 | transit\_subnet | Create a transit subnet for VPC peering (only central account) | `bool` | `false` | no |
-| vpc\_cidr | Network CIDR for the VPC | `any` | n/a | yes |
+| vpc\_cidr | Network CIDR for the VPC | `string` | n/a | yes |
 | vpc\_cidr\_summ | Define cidr used to summarize subnets by tier | `string` | `"/0"` | no |
-| vpc\_cidr\_transit | Network CIDR for Transit subnets | `string` | `"10.255.255.0/24"` | no |
 | vpc\_endpoint\_dynamodb\_gateway | Enable or disable VPC Endpoint for DynamoDB (Gateway) | `bool` | `true` | no |
-| vpc\_endpoint\_dynamodb\_policy | A policy to attach to the endpoint that controls access to the service | `string` | `"    {
-        \"Statement\": [
-            {
-                \"Action\": \"*\",\"Effect\": \"Allow\",\"Resource\": \"*\",\"Principal\": \"*\"
-            }
-        ]
-    }
-"` | no |
 | vpc\_endpoint\_s3\_gateway | Enable or disable VPC Endpoint for S3 Gateway | `bool` | `true` | no |
 | vpc\_endpoint\_s3\_policy | A policy to attach to the endpoint that controls access to the service | `string` | `"    {
         \"Statement\": [
