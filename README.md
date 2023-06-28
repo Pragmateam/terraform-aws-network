@@ -1,7 +1,7 @@
 # terraform-aws-network
 
-[![Lint Status](https://github.com/DNXLabs/terraform-aws-network/workflows/Lint/badge.svg)](https://github.com/DNXLabs/terraform-aws-network/actions)
-[![LICENSE](https://img.shields.io/github/license/DNXLabs/terraform-aws-network)](https://github.com/DNXLabs/terraform-aws-network/blob/master/LICENSE)
+[![Lint Status](https://github.com/Pragmateam/terraform-aws-network/workflows/Lint/badge.svg)](https://github.com/Pragmateam/terraform-aws-network/actions)
+[![LICENSE](https://img.shields.io/github/license/Pragmateam/terraform-aws-network)](https://github.com/Pragmateam/terraform-aws-network/blob/master/LICENSE)
 
 This module creates the basic network resources for a region.
 
@@ -29,7 +29,7 @@ The following resources will be created:
 
 ```hcl
 module "network" {
-  source = "git::https://github.com/DNXLabs/terraform-aws-network.git?ref=0.0.3"
+  source = "git::https://github.com/Pragmateam/terraform-aws-network.git?ref=1.0.0"
 
   vpc_cidr              = "10.1.0.0/16"
   newbits               = 8             # will create /24 subnets
@@ -44,7 +44,7 @@ module "network" {
 
 | Name | Version |
 |------|---------|
-| terraform | >= 0.14.0 |
+| terraform | >= 1.5.1 |
 
 ## Providers
 
