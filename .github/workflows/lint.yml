@@ -7,9 +7,15 @@ jobs:
     name: Lint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
-      - name: TFLint
-        uses: docker://ghcr.io/terraform-linters/tflint:latest
+      - uses: actions/checkout@v3
+      - uses: actions/cache@v3
+        with:
+          path: ~/.tflint.d/plugins
+          key: tflint-${{ hashFiles('.tflint.hcl') }}
+      - uses: terraform-linters/setup-tflint@v3
+      - run: tflint --version
+      - run: tflint --init
+      - run: tflint -f compact
 
   fmt:
     name: Code Format
@@ -17,7 +23,7 @@ jobs:
     container:
       image: hashicorp/terraform:latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v3
       - run: terraform fmt --recursive -check=true
 
   validate:
@@ -26,7 +32,7 @@ jobs:
     container:
       image: hashicorp/terraform:1.5.1
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v3
       - name: Validate Code
         env:
           AWS_REGION: 'us-east-1'
@@ -49,7 +55,7 @@ jobs:
     container:
       image: hashicorp/terraform:1.5.1
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v3
       - name: Validate Code
         env:
           AWS_REGION: 'us-east-1'
